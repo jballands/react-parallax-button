@@ -7,6 +7,7 @@
 //
 
 import React, { ReactNode } from 'react';
+import { animated } from 'react-spring';
 import useScaling from './useScaling';
 
 interface ParallaxButtonProps {
@@ -32,7 +33,7 @@ function ParallaxButton({
 	style = {},
 	...otherProps
 }: ParallaxButtonProps) {
-	const [scaleStyling, handleMouseMove, handleMouseLeave] = useScaling();
+	const [scale, handleMouseMove, handleMouseLeave] = useScaling();
 
 	return (
 		<div
@@ -44,13 +45,7 @@ function ParallaxButton({
 			onMouseMove={handleMouseMove}
 			onMouseLeave={handleMouseLeave}
 		>
-			<div
-				style={{
-					transform: scaleStyling()
-				}}
-			>
-				{children}
-			</div>
+			<animated.div style={scale}>{children}</animated.div>
 		</div>
 	);
 }
