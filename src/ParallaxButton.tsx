@@ -33,7 +33,7 @@ function ParallaxButton({
 	style = {},
 	...otherProps
 }: ParallaxButtonProps) {
-	const [scale, handleMouseMove, handleMouseLeave] = useScaling();
+	const [scaleProps, handleMouseMove, handleMouseLeave] = useScaling();
 
 	return (
 		<div
@@ -45,7 +45,9 @@ function ParallaxButton({
 			onMouseMove={handleMouseMove}
 			onMouseLeave={handleMouseLeave}
 		>
-			<animated.div style={scale}>{children}</animated.div>
+			<animated.div style={{ ...scaleProps, width: '100%', height: '100%' }}>
+				{children}
+			</animated.div>
 		</div>
 	);
 }
